@@ -1,3 +1,5 @@
+import klyvoraCrm from '../assets/klyvora-crm.png'
+
 export const profile = {
   name: 'Yan Teles',
   role: 'Desenvolvedor Web',
@@ -7,11 +9,7 @@ export const profile = {
 }
 
 export const projects = [
-  { title: 'NEXUS / 01', category: 'Produto digital', year: '2025', color: 'cyan', description: 'Uma plataforma pensada para transformar rotinas em momentos simples e humanos.', tags: ['UX/UI', 'React', 'Strategy'] },
-  { title: 'ATLAS / 02', category: 'Identidade visual', year: '2024', color: 'blue', description: 'Identidade visual e presença digital para uma nova forma de explorar cidades.', tags: ['Branding', 'Web', 'Motion'] },
-  { title: 'ORBIT / 03', category: 'Experiência web', year: '2024', color: 'violet', description: 'Uma experiência imersiva que aproxima pessoas, cultura e tecnologia.', tags: ['Creative dev', '3D', 'WebGL'] },
-  { title: 'PULSE / 04', category: 'Dashboard', year: '2024', color: 'cyan', description: 'Uma interface objetiva para acompanhar dados e decisões em tempo real.', tags: ['React', 'Data viz', 'UI'] },
-  { title: 'NOVA / 05', category: 'Landing page', year: '2023', color: 'blue', description: 'Uma página de lançamento criada para apresentar uma nova ideia com clareza.', tags: ['HTML', 'CSS', 'Motion'] },
+  { title: 'KLYVORA CRM', category: 'Sistema web · Projeto da faculdade', year: '2025', color: 'cyan', url: 'https://klyvora-crm.vercel.app/', image: klyvoraCrm, description: 'CRM comercial criado para equipes de vendas organizarem leads, funil de vendas, tarefas e resultados em um só lugar. Distribui leads entre vendedores, acompanha negociações em kanban e gera relatórios de faturamento e conversão.', tags: ['CRM', 'Web app', 'Kanban', 'Relatórios'] },
 ]
 
 export const expertise = [
