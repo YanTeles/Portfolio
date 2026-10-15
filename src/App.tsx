@@ -67,9 +67,30 @@ function App() {
     return () => window.cancelAnimationFrame(frame)
   }, [])
 
+  useEffect(() => {
+    if (!projectsOpen) return
+
+    const previousOverflow = document.body.style.overflow
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setProjectsOpen(false)
+    }
+
+    document.body.style.overflow = 'hidden'
+    window.addEventListener('keydown', closeOnEscape)
+    return () => {
+      document.body.style.overflow = previousOverflow
+      window.removeEventListener('keydown', closeOnEscape)
+    }
+  }, [projectsOpen])
+
   const goTo = (label: string) => {
     document.getElementById(label.toLowerCase())?.scrollIntoView({ behavior: 'smooth' })
     setMenuOpen(false)
+  }
+
+  const openProject = (project: typeof projects[number]) => {
+    setSelectedProject(project)
+    setProjectsOpen(true)
   }
 
   const moveTechnologies = (direction: 'previous' | 'next') => {
@@ -137,7 +158,7 @@ function App() {
         <div className="section-head"><p className="section-index">Projetos</p><p>Uma seleção de ideias<br />transformadas em realidade.</p></div>
         <div className="project-carousel"><button className="project-arrow" onClick={() => moveProjects('previous')} aria-label="Projeto anterior"><ArrowLeft /></button><div className="project-viewport" ref={projectRailRef}><div className="project-list">{projects.map((project, index) => <motion.article className={`project-card ${project.color}`} key={project.title} initial={{ opacity: 0, y: 35 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .2 }} transition={{ delay: index * .08 }}>
           <div className="project-visual"><span>{project.year}</span><div className="visual-shape" /><span className="project-number">0{index + 1}</span></div>
-          <div className="project-info"><div><p>{project.category}</p><h3>{project.title}</h3></div><p className="description">{project.description}</p><div className="tags">{project.tags.map(tag => <span key={tag}>{tag}</span>)}</div><button aria-label={`Abrir ${project.title}`}><ArrowUpRight /></button></div>
+          <div className="project-info"><div><p>{project.category}</p><h3>{project.title}</h3></div><p className="description">{project.description}</p><div className="tags">{project.tags.map(tag => <span key={tag}>{tag}</span>)}</div><button onClick={() => openProject(project)} aria-label={`Abrir ${project.title}`}><ArrowUpRight /></button></div>
         </motion.article>)}</div></div><button className="project-arrow" onClick={() => moveProjects('next')} aria-label="Próximo projeto"><ArrowRight /></button></div>
         <button className="all-projects" onClick={() => { setProjectsOpen(true); setSelectedProject(null) }}>Ver todos os projetos <ArrowUpRight /></button>
         {projectsOpen && <div className="project-modal-backdrop" role="presentation" onClick={() => setProjectsOpen(false)}><section className="project-modal" role="dialog" aria-modal="true" aria-labelledby="project-modal-title" onClick={(event) => event.stopPropagation()}><div className="project-modal-header"><div><p className="section-index">ARQUIVO COMPLETO</p><h2 id="project-modal-title">Todos os projetos</h2></div><button className="project-modal-close" onClick={() => setProjectsOpen(false)} aria-label="Fechar projetos"><X /></button></div>{selectedProject && <div className={`project-detail ${selectedProject.color}`}><div className="project-detail-visual"><div className="visual-shape" /></div><div><p>{selectedProject.category} · {selectedProject.year}</p><h3>{selectedProject.title}</h3><span>{selectedProject.description}</span><div>{selectedProject.tags.map((tag) => <b key={tag}>{tag}</b>)}</div></div></div>}<div className="project-modal-list">{projects.map((project, index) => <article className="project-modal-item" key={project.title} role="button" tabIndex={0} onClick={() => setSelectedProject(project)} onKeyDown={(event) => { if (event.key === 'Enter' || event.key === ' ') setSelectedProject(project) }}><span>0{index + 1}</span><div className={`project-modal-preview ${project.color}`}><div className="visual-shape" /></div><div><p>{project.category} · {project.year}</p><h3>{project.title}</h3><small>{project.description}</small><div>{project.tags.map((tag) => <b key={tag}>{tag}</b>)}</div></div><ArrowUpRight /></article>)}</div></section></div>}

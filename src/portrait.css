@@ -514,3 +514,247 @@
     font-size: 7px;
   }
 }
+
+.project-carousel {
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr) 40px;
+  align-items: center;
+  gap: 14px;
+}
+
+.project-viewport {
+  min-width: 0;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.project-viewport::-webkit-scrollbar {
+  display: none;
+}
+
+.project-list {
+  display: flex;
+  width: 100%;
+  gap: 22px;
+}
+
+.project-card {
+  width: 100%;
+  min-width: 0;
+  flex: 0 0 100%;
+  scroll-snap-align: start;
+}
+
+.project-arrow {
+  display: grid;
+  width: 40px;
+  height: 40px;
+  place-items: center;
+  border: 1px solid #2d6378;
+  background: transparent;
+  color: #d9f7ff;
+  transition: background .2s, color .2s;
+}
+
+.project-arrow:hover {
+  background: #d9f7ff;
+  color: #082039;
+}
+
+.project-arrow svg {
+  width: 17px;
+}
+
+.project-modal-backdrop {
+  position: fixed;
+  z-index: 30;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: rgb(2 8 14 / 82%);
+  backdrop-filter: blur(8px);
+}
+
+.project-modal {
+  width: min(100%, 850px);
+  max-height: min(85svh, 800px);
+  overflow-y: auto;
+  padding: clamp(20px, 4vw, 36px);
+  border: 1px solid #2d6378;
+  background: #081722;
+  color: #e8faff;
+  box-shadow: 0 24px 100px rgb(0 0 0 / 45%);
+}
+
+.project-modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  padding-bottom: 22px;
+  border-bottom: 1px solid #24495d;
+}
+
+.project-modal-header h2 {
+  margin: 8px 0 0;
+  font-size: clamp(25px, 4vw, 36px);
+  letter-spacing: -.05em;
+}
+
+.project-modal-close {
+  display: grid;
+  width: 38px;
+  height: 38px;
+  flex: 0 0 auto;
+  place-items: center;
+  border: 1px solid #2d6378;
+  background: transparent;
+  color: #e8faff;
+}
+
+.project-modal-close:hover {
+  background: #153447;
+}
+
+.project-modal-close svg {
+  width: 18px;
+}
+
+.project-detail {
+  display: grid;
+  grid-template-columns: minmax(120px, .6fr) 1fr;
+  gap: 22px;
+  margin: 22px 0;
+  padding: 18px;
+  border: 1px solid #24495d;
+  background: #0d2230;
+}
+
+.project-detail-visual,
+.project-modal-preview {
+  position: relative;
+  min-height: 120px;
+  overflow: hidden;
+  background: linear-gradient(135deg, #0e8cbe, #063457);
+}
+
+.project-detail-visual .visual-shape,
+.project-modal-preview .visual-shape {
+  width: 55%;
+}
+
+.project-detail.blue .project-detail-visual,
+.project-modal-preview.blue {
+  background: linear-gradient(135deg, #1641a6, #0a1537);
+}
+
+.project-detail.violet .project-detail-visual,
+.project-modal-preview.violet {
+  background: linear-gradient(135deg, #381b78, #0b1028);
+}
+
+.project-detail > div:last-child > p,
+.project-modal-item > div:nth-of-type(2) > p {
+  margin: 0 0 8px;
+  color: #81cce9;
+  font: 10px 'DM Mono', monospace;
+}
+
+.project-detail h3,
+.project-modal-item h3 {
+  margin: 0 0 9px;
+  font-size: 20px;
+}
+
+.project-detail > div:last-child > span,
+.project-modal-item small {
+  color: #9cb2c1;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.project-detail > div:last-child > div,
+.project-modal-item > div:nth-of-type(2) > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 12px;
+}
+
+.project-detail b,
+.project-modal-item b {
+  padding: 5px 7px;
+  border: 1px solid #2d4656;
+  color: #8ea5b4;
+  font: 9px 'DM Mono', monospace;
+}
+
+.project-modal-list {
+  display: grid;
+}
+
+.project-modal-item {
+  display: grid;
+  grid-template-columns: 28px 90px minmax(0, 1fr) 18px;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid #24495d;
+  color: #e8faff;
+  cursor: pointer;
+}
+
+.project-modal-item:hover,
+.project-modal-item:focus-visible {
+  color: #83d8f3;
+  outline: none;
+}
+
+.project-modal-item > span {
+  color: #74cbe8;
+  font: 10px 'DM Mono', monospace;
+}
+
+.project-modal-preview {
+  min-height: 64px;
+}
+
+.project-modal-preview .visual-shape {
+  top: 12%;
+}
+
+.project-modal-item > div:nth-of-type(2) {
+  min-width: 0;
+}
+
+.project-modal-item > svg {
+  width: 16px;
+}
+
+@media (max-width: 720px) {
+  .project-carousel {
+    grid-template-columns: 32px minmax(0, 1fr) 32px;
+    gap: 8px;
+  }
+
+  .project-arrow {
+    width: 32px;
+    height: 36px;
+  }
+
+  .project-detail {
+    grid-template-columns: 1fr;
+  }
+
+  .project-detail-visual {
+    min-height: 150px;
+  }
+
+  .project-modal-item {
+    grid-template-columns: 22px 58px minmax(0, 1fr) 14px;
+    gap: 9px;
+  }
+}
