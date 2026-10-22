@@ -1,4 +1,5 @@
 import klyvoraCrm from '../assets/klyvora-crm.png'
+import roletaPokemon from '../assets/roleta-pokemon.png'
 
 export const profile = {
   name: 'Yan Teles',
@@ -10,6 +11,7 @@ export const profile = {
 
 export const projects = [
   { title: 'KLYVORA CRM', category: 'Sistema web · Projeto da faculdade', year: '2025', color: 'cyan', url: 'https://klyvora-crm.vercel.app/', image: klyvoraCrm, description: 'CRM comercial criado para equipes de vendas organizarem leads, funil de vendas, tarefas e resultados em um só lugar. Distribui leads entre vendedores, acompanha negociações em kanban e gera relatórios de faturamento e conversão.', tags: ['CRM', 'Web app', 'Kanban', 'Relatórios'] },
+  { title: 'Roleta Jornada Pokémon', category: 'Jogo web · Projeto pessoal', year: '2026', color: 'violet', url: 'https://java-hazel.vercel.app/', image: roletaPokemon, description: 'Jogo de jornada Pokémon movido a roleta: escolha região e chance de shiny, gire para capturar Pokémon, vença os 8 ginásios e chegue à Liga. Tem modo Nuzlocke, time, mochila, PC, memorial e diário, com contas para salvar o progresso na nuvem e dados da PokéAPI.', tags: ['Jogo', 'Web app', 'PokéAPI', 'Salvamento na nuvem'] },
 ]
 
 export const expertise = [
